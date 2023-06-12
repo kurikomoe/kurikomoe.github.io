@@ -1,0 +1,271 @@
+@import "~@nord";
+
+@background-color-non-opacity: rgba(255,255,255,1);
+@background-color: rgba(255,255,255,0);
+@breakpoint: 450px;
+@breakpoint-sm: @breakpoint;
+@breakpoint-md: 900px;
+
+@general-font-size: 1rem;
+
+@tag-radius: 0.5em;
+
+.full-height {
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.hide-scrollbar::-webkit-scrollbar {
+  //display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.hide-scrollbar {
+  //-ms-overflow-style: none;
+}
+
+// disable User Agent CSS.
+.default-font {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+}
+
+.default {
+  margin: 0;
+  padding: 0;
+
+  .default-font();
+}
+
+:deep(*) {
+  .default-font();
+}
+
+// pointer
+.context-cursor {
+  &:hover {
+    color: @nord11;
+    cursor: context-menu;
+  }
+}
+
+.click-cursor {
+  &:hover {
+    color: @nord11;
+    cursor: pointer;
+  }
+}
+
+.font-face(@font-family, @filepath, @filename, @font-weight, @font-style) {
+  @font-face {
+    font-family: @font-family;
+    src: url('@{filepath}/web/eot/@{filename}.eot');
+    src: url('@{filepath}/web/eot/@{filename}.eot?#iefix') format('embedded-opentype'),
+    url('@{filepath}/web/woff2/@{filename}.woff2') format('woff2'),
+    url('@{filepath}/web/woff/@{filename}.woff') format('woff'),
+    url('@{filepath}/ttf/@{filename}.ttf') format('truetype');
+    font-weight: @font-weight;
+    font-style: @font-style;
+    //font-display: fallback;
+  }
+}
+
+.font-face("jbmono", "~@fonts/jbmono", "JetBrainsMono-Regular", regular, regular);
+
+.code-font {
+  font-family: 'jbmono', "monospace", monospace;
+}
+
+.deep-code-font {
+  * {
+    font-size: 0.9em;
+    .code-font();
+  }
+}
+
+.apple-box {
+  //padding: 20px;
+  border-radius: 5px;
+
+  -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+}
+
+.fontawesome {
+  font-family: FontAwesome, serif !important;
+}
+
+
+.box-container(@border-color, @background-color) {
+  padding: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: @background-color;
+  border-left: 5px solid @border-color;
+  //line-height: 1.2rem;
+  font-size: 90%;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.box-container-smaller(@border-color, @background-color) {
+  // reuse the box container
+  .box-container(@border-color, @background-color);
+
+  padding: 8px 10px 8px 10px;
+
+  font-size: 85%;
+  color: @nord1;
+}
+
+.box-container-with-header(@header-text, @border-color, @background-color, @header-color: #2D3142) {
+  // reuse the box container
+  .box-container(@border-color, @background-color);
+  &:before {
+    content: @header-text + ": ";
+    display: inline-block;
+    //border-bottom: solid 1px @nord3;
+    text-decoration: underline;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    color: @header-color;
+    font-size: 1rem;
+    //padding: 0 0.2rem 0 0.2rem;
+  }
+}
+
+.explain {
+  .box-container-with-header("Explanation", @border-color: #f0ad4e, @background-color: #fdf8ea);
+}
+
+.question {
+  .box-container-with-header("Question", @border-color: #777, @background-color: #f7f7f7);
+}
+
+.define {
+  .box-container-with-header("Definition", @border-color: #428bca, @background-color: #eef7fa, @header-color: #2D3142);
+}
+
+.theorem {
+  .box-container-with-header("Theorem", @border-color: #777, @background-color: #f7f7f7);
+}
+
+.note {
+  .box-container(@border-color: #777, @background-color: #f7f7f7);
+}
+
+.ref {
+  // ref is based on note, but modified to be smaller
+  .box-container-smaller(@border-color: #777, @background-color: #f7f7f7);
+}
+
+
+.info {
+  .box-container(@border-color: #428bca, @background-color: #eef7fa);
+}
+
+.extra {
+  .box-container(@border-color: rgb(38, 203, 124), @background-color: #F5F7F9);
+}
+
+.warning {
+  .box-container(@border-color: #f0ad4e, @background-color: #fdf8ea);
+}
+
+.alert {
+  .box-container(@border-color: #ff1700, @background-color: #f9f9f9);
+}
+
+.quote {
+  all: unset;
+  margin: 2em auto 2em auto;
+  text-align: center;
+  display: table;
+
+  p, div, center {
+    display: table-cell;
+    text-align: left;
+    margin: 1rem 0.5rem;
+    vertical-align: middle;
+    color: #A0522D;
+    font-size: 1.2rem;
+    word-break: break-word;
+  }
+
+  .prefix-suffix-common-style {
+    display: table-cell;
+    color: #B2B7F2;
+    font-size: 36px;
+    font-family: 'Times New Roman', serif;
+    font-variant-ligatures: normal;
+    /*font-family: serif;*/
+    font-weight: bold;
+    /*padding: 10px 5px;*/
+    padding: 0 10px;
+    /*line-height: 100%;*/
+  }
+
+  &:before {
+    content: "“";
+
+    .prefix-suffix-common-style();
+    vertical-align: top;
+    text-align: right;
+  }
+
+  &:after {
+    content: "”";
+
+    .prefix-suffix-common-style();
+    vertical-align: bottom;
+    text-align: left;
+  }
+
+  &:has(say) {
+    margin-bottom: 10em;
+  }
+
+  say {
+    &:before {
+      content: "--";
+      margin-right: 0.5rem;
+    }
+
+    font-size: 85%;
+    position: absolute;
+    color: @nord0;
+    float: right;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.clear-visited {
+  a:visited {
+    color: @nord0;
+  }
+}
+
+.disabled {
+  &:hover {
+    color: @nord11;
+  }
+
+}
+
+.reset-this-root {
+  all: initial;
+
+  * {
+    all: unset;
+  }
+}
+
+// Shared CSS Styles

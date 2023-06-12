@@ -1,0 +1,56 @@
+@import "utils.less";
+/* @import "~highlight.js/styles/xcode.css"; */
+
+:lang(zh), :lang(zh-Hans) {
+}
+
+a {
+  text-decoration: none;
+}
+
+html, body, #app {
+  .full-height();
+  .full-width();
+
+  scroll-behavior: smooth;
+
+  //background: @background-color-non-opacity;
+
+  .default();
+}
+
+spoiler {
+  @spoiler-font-size: 0.9em;
+
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+
+  display: inline-block;
+  color: rgba(0, 0, 0, 90%);
+  filter: blur(2px) brightness(0.2);
+  background-color: black;
+  line-height: 1.2;
+
+  font-size: @spoiler-font-size;
+  vertical-align: (@general-font-size - @spoiler-font-size)/2;
+
+  border-radius: 5px;
+
+  transition: 0.25s;
+
+  &:hover {
+    display: inline-block;
+    color: unset;
+    background-color: unset;
+    filter: blur(0px);
+    transition: 0.25s;
+  }
+
+  &.safari-fix:hover {
+    filter: none;
+  }
+
+  &.chrome-fix:hover {
+    filter: blur(0.4px);
+  }
+}
